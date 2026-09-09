@@ -1,0 +1,16 @@
+name: Recordly
+id: ari:cloud:compass:a4479d15-ff07-4c71-9824-9fefce1d7cf2:component/b2860c2a-ea4d-43f6-9d0b-30d56dfcbb07/793f0346-3341-40c0-ac6b-6a7a117df17b
+description: Create polished demo videos without editing skills. Mac/Windows/Linux
+configVersion: 1
+typeId: SERVICE
+fields:
+  tier: 4
+links:
+  - name: null
+    type: REPOSITORY
+    url: https://github.com/xcunomial/Recordly
+relationships:
+  DEPENDS_ON: []
+labels:
+  - source:github
+customFields: null
