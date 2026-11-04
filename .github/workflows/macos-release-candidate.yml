@@ -1,4 +1,4 @@
-name: macOS Release Candidate
+name: Release Preview (macOS)
 
 run-name: macOS RC validation for ${{ inputs.source_sha }}
 

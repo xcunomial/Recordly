@@ -1,5 +1,5 @@
 
-name: Build Electron App
+name: Build Desktop
 
 on:
   workflow_dispatch:

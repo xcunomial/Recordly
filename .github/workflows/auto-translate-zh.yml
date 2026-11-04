@@ -1,4 +1,4 @@
-name: Auto Translate to zh-CN
+name: Maintenance (Translation)
 
 on:
   push:
