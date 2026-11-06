@@ -1,18 +1,19 @@
-name: Code Quality
+name: CI
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize, ready_for_review]
   push:
-    branches: [main]
+    branches: ["develop", "master"]
   workflow_dispatch:
+  merge_group:
+  workflow_call:
 
 permissions:
   contents: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   quality:
@@ -63,3 +64,25 @@ jobs:
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         continue-on-error: true
         run: npm run i18n:check
+
+  ci-required:
+    name: CI required
+    if: ${{ always() }}
+    needs: ["quality"]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Require every validation result
+        env:
+          REQUIRED_RESULTS: ${{ join(needs.*.result, ',') }}
+        run: |
+          python3 - <<'PY'
+          import os
+          states = os.environ.get('REQUIRED_RESULTS', '').split(',')
+          if any(state.strip() != 'success' for state in states):
+              raise SystemExit('Every required validation must succeed: ' + repr(states))
+          print(f'All {len(states)} required validation jobs succeeded.')
+          PY
+

@@ -1,4 +1,4 @@
-name: Update Homebrew Tap
+name: Release (Homebrew)
 
 on:
   workflow_dispatch:
