@@ -100,4 +100,4 @@ If you need to rerun publishing for an existing tag, use the manual dispatch for
 - macOS auto-updates require the `zip` target in addition to `dmg`, because `latest-mac.yml` is generated from the zipped build.
 - macOS arm64 and x64 builds both publish updater zips, and the release workflow merges them into one `latest-mac.yml` so `electron-updater` can choose the correct architecture automatically.
 - The release workflow publishes versioned artifact names so the generated update metadata matches the uploaded files.
-- `build.yml` is intentionally forced to `--publish never` so ad hoc CI builds do not accidentally upload to a draft release.
+- `build-desktop.yml` is intentionally forced to `--publish never` so ad hoc CI builds do not accidentally upload to a draft release.
