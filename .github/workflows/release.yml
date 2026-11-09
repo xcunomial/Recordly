@@ -739,7 +739,7 @@ jobs:
       - name: Dispatch Homebrew tap workflow
         shell: bash
         run: |
-          gh workflow run homebrew-tap.yml \
+          gh workflow run release-homebrew.yml \
             --repo "${{ github.repository }}" \
             -f tag="${{ needs.prepare-release.outputs.tag_name }}"
         env:
